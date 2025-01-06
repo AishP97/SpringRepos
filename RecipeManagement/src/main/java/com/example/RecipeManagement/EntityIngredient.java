@@ -1,10 +1,5 @@
 package com.example.RecipeManagement;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -28,8 +23,6 @@ public class EntityIngredient {
 	@JoinColumn(name = "recipeid", nullable = false)
 	@JsonBackReference
 	private EntityRecipe recipe;
-	
-
 	
 	public EntityIngredient() {
 

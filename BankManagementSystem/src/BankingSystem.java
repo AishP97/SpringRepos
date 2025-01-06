@@ -20,21 +20,28 @@ public class BankingSystem {
 		
 		switch(choice) {
 		case 1:
+			
 			System.out.println("Enter your Account Number :");				
 			String accountNumber = sc.next();
-			//bk.accountValidations(accountNumber);
-			System.out.println("Enter Account Holder Name :");				
-			sc.nextLine();				
-			String accountHolderName = sc.nextLine();	
-			//bk.accountHolderNameValidations(accountHolderName);
-			System.out.println("Enter your Account Type:");				
-			String accounType = sc.next();	
-			//bk.accounTypeValidations(accounType);
-			System.out.println("Enter amount to Deposit");				
-			double deposit = sc.nextDouble();	
+			
+			while(bk.accountValidations(accountNumber)) {
+				System.out.println("Enter Account Holder Name :");				
+				sc.nextLine();				
+				String accountHolderName = sc.nextLine();	
+				//bk.accountHolderNameValidations(accountHolderName);
+				
+				System.out.println("Enter your Account Type:");				
+				String accounType = sc.next();	
+				//bk.accounTypeValidations(accounType);
+				
+				System.out.println("Enter amount to Deposit");				
+				double deposit = sc.nextDouble();	
+			
+				bk.createAccount(new Account(accountNumber,accountHolderName,accounType,deposit));			
+				break;
+			}
 		
-			bk.createAccount(new Account(accountNumber,accountHolderName,accounType,deposit));			
-			break;
+			
 			
 		case 2:
 			System.out.println("Enter your Account Number :");

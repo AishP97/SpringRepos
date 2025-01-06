@@ -10,6 +10,7 @@ public class Bank {
 	
 	public void createAccount(Account account) throws SQLException, ClassNotFoundException {
 		
+		
 		String query = "INSERT INTO ACCOUNTS (accountnumber, accountholdername,accountype, balance) VALUES (?, ?, ?, ?)";
 		con = DatabaseConnectivity.getConnection();
 		PreparedStatement stmt = con.prepareStatement(query);
@@ -22,9 +23,12 @@ public class Bank {
 		int insertset = stmt.executeUpdate();
 		if(insertset > 0) {
 			System.out.println("Account created successfully");
+		
 		}else {
 			System.out.println("Count not create Account, Check your details");
-		}	
+		
+		}
+			
 	}
 	
 	public void getAccount(String accountNumber) throws SQLException, ClassNotFoundException {
@@ -124,22 +128,33 @@ public class Bank {
 			return bal;
 		}
 		
-		public void accountValidations(String accountNumber ) {
+		public boolean accountValidations(String accountNumber ) {
+			
+			boolean accountStatusFlag = true;
 			
 			if(accountNumber == null || accountNumber.isEmpty()) {
-				System.out.println("Account Number cannot be Empty! Please provide your Account Number");
+				System.out.println("Account Number cannot be Empty! Please provide a valid Account Number");
+				accountStatusFlag = false;
+				return accountStatusFlag;
 			}
 			if(accountNumber.length() > 20) {
 				System.out.println("Account Number has to be within 20 digits ! Please enter a valid Account Number");
+				accountStatusFlag = false;
+				return accountStatusFlag;
 			}
 			if(accountNumber.startsWith("-")) {
 				System.out.println("Account Number value cannot be negative ! Please Enter a valid Account Number");
+				accountStatusFlag = false;
+				return accountStatusFlag;
 			}
 			for(char c : accountNumber.toCharArray()) {
 				if(!Character.isDigit(c)) {
 					System.out.println("Account number should be numeric only ! Please enter a valid Account Number");
+					accountStatusFlag = false;
+					return accountStatusFlag;
 				}
 			}
+			return accountStatusFlag;
 		}
 		
 		public void accountHolderNameValidations(String accountHolderName) {
