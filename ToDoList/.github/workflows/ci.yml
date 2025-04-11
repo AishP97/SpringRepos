@@ -1,4 +1,4 @@
-name: Java CI with Maven (Developers version)
+name: Java CICD with Maven (Developers version)
 
 on:
   push:
