@@ -1,4 +1,4 @@
-name: Java CICD with Maven (Developers version -Aishwarya Sutar Manual Trigger version)
+name: Java CICD with Maven (Developers version -Aishwarya Sutar Manual  version)
 
 on:
   push:
