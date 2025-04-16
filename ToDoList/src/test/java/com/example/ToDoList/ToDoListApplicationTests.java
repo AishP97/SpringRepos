@@ -19,7 +19,7 @@ class ToDoListApplicationTests {
 	void getToDoReturnList() throws Exception  {
 		mvc.perform(MockMvcRequestBuilders.get(("/api/todo")))
 				.andExpect(status().isOk())
-	               .andExpect(jsonPath("$[0]").value("Learn CI/CD using Github Actions(Developers true version testing for giuthub actions) "));
+	               .andExpect(jsonPath("$[0]").value("Learn CI/CD using Github Actions) "));
 
 	}
 
