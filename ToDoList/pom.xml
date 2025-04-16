@@ -50,11 +50,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		/*<dependency>
+		  <!--<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>RecipeManagement</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>*/
+		</dependency>-->
 	</dependencies>
 
 	<build>
