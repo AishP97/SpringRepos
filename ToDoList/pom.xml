@@ -55,19 +55,12 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.33</version> <!-- Use the latest version available -->
 		</dependency>
-<<<<<<< HEAD
-		<!--<dependency>
-=======
 		  <!--<dependency>
->>>>>>> branch 'master' of https://github.com/AishP97/SpringRepos.git
 			<groupId>com.example</groupId>
 			<artifactId>RecipeManagement</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-<<<<<<< HEAD
-		</dependency> -->
-=======
-		</dependency>-->
->>>>>>> branch 'master' of https://github.com/AishP97/SpringRepos.git
+		 </dependency> -->
+
 	</dependencies>
 
 	<build>
