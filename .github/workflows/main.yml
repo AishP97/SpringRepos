@@ -31,5 +31,5 @@ jobs:
       - name: Build with Maven
         run: cd ToDoList && mvn clean install
 
-      - name: Run Tests
-        run: cd ToDoList && mvn test
+      - name: Run Tests with H2
+        run: cd ToDoList && mvn test -Dspring.profiles.active=test
