@@ -1,0 +1,36 @@
+name: CD - Deploy Spring Boot App to EC2 using Docker
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+
+      - name: Build Docker image
+        run: |
+          cd ToDoList
+          docker build -t todolist-app .
+
+      - name: Save and transfer Docker image to EC2
+        run: |
+          docker save todolist-app | bzip2 | ssh -i private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'bunzip2 | docker load'
+
+      - name: Run Docker container on EC2
+        run: |
+          ssh -i private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            docker stop todolist-container || true
+            docker rm todolist-container || true
+            docker run -d --name todolist-container -p 8080:8080 todolist-app
+          EOF
