@@ -1,0 +1,15 @@
+# Use OpenJDK base image
+FROM openjdk:17-jdk-slim
+
+# Set environment variable
+ENV APP_HOME=/app
+WORKDIR $APP_HOME
+
+# Copy the JAR file
+COPY target/ToDoList-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose application port (adjust if not 8080)
+EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
