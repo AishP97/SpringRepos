@@ -1,4 +1,4 @@
-name: Java CI with Maven (Developers version -Aishwarya Sutar Manual  version)
+name: Java CI only with Maven (Developers version -Aishwarya Sutar Manual  version)
 
 on:
   push:
