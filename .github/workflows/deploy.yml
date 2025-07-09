@@ -18,6 +18,17 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
           chmod 600 private_key.pem
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build JAR using Maven
+        run: |
+          cd ToDoList
+          mvn clean package
+
       - name: Build Docker image
         run: |
           cd ToDoList
@@ -25,7 +36,8 @@ jobs:
 
       - name: Save and transfer Docker image to EC2
         run: |
-          docker save todolist-app | bzip2 | ssh -i private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'bunzip2 | docker load'
+          cd ToDoList
+          docker save todolist-app | bzip2 | ssh -i ../private_key.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'bunzip2 | docker load'
 
       - name: Run Docker container on EC2
         run: |
